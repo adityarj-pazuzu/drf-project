@@ -1,0 +1,29 @@
+# .gitignore
+
+# Python/Django specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+.mypy_cache/
+.vscode/
+
+# Virtual environment
+venv/
+
+# PostgreSQL database
+*.sql
+
+# IDE files
+.idea/
+*.code-workspace
+
+# Environment variables file
+.env
+
+# Ignore local settings
+local_settings.py
+
+# Migrations
+myproject/migrations/
