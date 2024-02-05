@@ -10,12 +10,11 @@ Simple Django REST Framework project for Blog application
 
    ```cmd
    docker run -d --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=mydb -p 5432:5432 postgres:latest
-
-    ```
+   ```
 
     Create database
     ```cmd
-    docker exec -it postgres psql -U myuser
+    docker exec -it postgres psql -U postgres
 
     CREATE DATABASE mydb;
 
@@ -67,3 +66,92 @@ Simple Django REST Framework project for Blog application
     ```cmd
     python api-requests-script.py
     ```
+
+
+## Blog Endpoints
+
+### Authentication
+
+The API uses JSON Web Tokens (JWT) for authentication. Include the JWT token in the Authorization header of your requests.
+
+- **Endpoint:** `/token/`
+- **Method:** `POST`
+- **Description:** Obtain an access token by providing valid credentials.
+    ```bash
+    curl -X POST -H "Content-Type: application/json" \
+    -d '{"username": "your_username", "password": "your_password"}' \
+    http://localhost:8000/token/
+    ```
+
+### Get a List of Blogs
+
+- **Endpoint:** `/api/blogs/`
+- **Method:** `GET`
+- **Description:** Retrieve a list of all blogs.
+    ```cmd
+    curl -X GET -H "Authorization: Bearer <your_jwt_token_here>" http://localhost:8000/api/blogs/
+    ```
+
+### Get a Single Blog
+
+- **Endpoint:** `/api/blogs/{blog_id}/`
+- **Method:** `GET`
+- **Description:** Retrieve details of a specific blog.
+    ```bash
+    curl -X GET -H "Authorization: Bearer <your_jwt_token_here>" http://localhost:8000/api/blogs/{blog_id}/
+    ```
+
+### Create a Blog
+
+- **Endpoint:** `/api/blogs/`
+- **Method:** `POST`
+- **Description:** Create a new blog. Requires authentication.
+
+   ```bash
+   curl -X POST -H "Authorization: Bearer <your_jwt_token_here>" -H "Content-Type: application/json" -d '{"title": "Blog Title" "content": "Blog Content"}' http://localhost:8000/api/blogs/
+   ```
+
+### Update a Blog
+
+- **Endpoint:** `/api/blogs/{blog_id}/`
+- **Method:** `PUT`
+- **Description:** Update an existing blog. Requires authentication and ownership of the blog.
+
+   ```bash
+   curl -X PUT -H "Authorization: Bearer <your_jwt_token_here>" -H "Content-Type: application/json" -d '{"title": "Updated Blog Title" "content": "Updated Blog Content"}' http://localhost:8000/api/blogs/{blog_id}/
+   ```
+
+### Delete a Blog
+
+- **Endpoint:** `/api/blogs/{blog_id}/`
+- **Method:** `DELETE`
+- **Description:** Delete an existing blog. Requires authentication and ownership of the blog.
+
+   ```bash
+   curl -X DELETE -H "Authorization: Bearer <your_jwt_token_here>" http://localhost:8000/api/blogs/{blog_id}/
+   ```
+### Get blogs by Author
+```bash
+curl -X GET -H "Authorization: Bearer your_jwt_token_here" http://localhost:8000/api/blogs/?author={author_id}
+```
+
+### Get Blogs by date
+```bash
+curl -X GET -H "Authorization: Bearer your_jwt_token_here" http://localhost:8000/api/blogs/by_date/?date={yyyy-mm-dd}
+```
+
+### Get Blogs within Date Range
+```bash
+curl -X GET -H "Authorization: Bearer your_jwt_token_here" \
+http://localhost:8000/api/blogs/by_date_range/?start_date={yyyy-mm-dd}&end_date={yyyy-mm-dd}
+```
+
+### Get Blogs Created After a Date
+```bash
+curl -X GET -H "Authorization: Bearer your_jwt_token_here" http://localhost:8000/api/blogs/created_after_date/?date={yyyy-mm-dd}
+```
+
+### Get Blogs Created Before a Date
+```bash
+curl -X GET -H "Authorization: Bearer <your_jwt_token_here>" http://localhost:8000/api/blogs/created_before_date/?date={yyyy-mm-dd}
+```
