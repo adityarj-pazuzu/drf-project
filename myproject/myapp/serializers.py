@@ -11,7 +11,6 @@ class BlogSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Automatically set the author to the authenticated user during creation
         request = self.context.get('request')  # Access the request object
-        print(request.user)
         validated_data['author'] = request.user  # Set the author
         return super().create(validated_data)
 

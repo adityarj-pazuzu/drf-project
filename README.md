@@ -2,7 +2,7 @@ Simple Django REST Framework project for Blog application
 
 ## Getting Started
 
-### Setting up PostgreSQL with Docker
+### Setting up PostgreSQL with Docker OR Install Postgres 
 
 1. Make sure you have Docker installed on your machine.
 
@@ -61,4 +61,9 @@ Simple Django REST Framework project for Blog application
 10. Run tests
     ```cmd
     python manage.py test myapp.tests
+    ```
+
+11. Test APIs using requests
+    ```cmd
+    python api-requests-script.py
     ```
