@@ -1,9 +1,13 @@
 import requests
 
 # Replace these values with your actual endpoint URLs
-BASE_URL = 'http://localhost:8000'
-LOGIN_URL = BASE_URL + '/token/'
-BLOGS_URL = BASE_URL + '/api/blogs/'
+BASE_URL = 'http://localhost:8000/api'
+LOGIN_URL = 'http://localhost:8000/token/'
+BLOGS_URL = BASE_URL + '/blogs/'  # Updated endpoint
+BLOGS_BY_DATE_URL = BASE_URL + '/blogs/by_date/'
+BLOGS_BY_DATE_RANGE_URL = BASE_URL + '/blogs/by_date_range/'
+BLOGS_CREATED_AFTER_DATE_URL = BASE_URL + '/blogs/created_after_date/'
+BLOGS_CREATED_BEFORE_DATE_URL = BASE_URL + '/blogs/created_before_date/'
 
 # Replace these values with your test user credentials
 USERNAME = 'admin'
@@ -57,12 +61,13 @@ response = perform_request(BLOGS_URL, method='POST', data=blog_data)
 print(f'Test Case 4 - Create Blog (Authenticated): Status Code: {response.status_code}, Response: {response.json()}')
 
 # Test Case 5: Update Blog (Authenticated)
+id_to_update = str(response.json()['id'])
 updated_blog_data = {'title': 'Updated Test Blog', 'content': 'This is an updated test blog content.'}
-response = perform_request(BLOGS_URL + '1/', method='PUT', data=updated_blog_data)
+response = perform_request(BLOGS_URL + id_to_update + '/', method='PUT', data=updated_blog_data)
 print(f'Test Case 5 - Update Blog (Authenticated): Status Code: {response.status_code}, Response: {response.json()}')
 
 # Test Case 6: Delete Blog (Authenticated)
-response = perform_request(BLOGS_URL + '1/', method='DELETE')
+response = perform_request(BLOGS_URL + id_to_update + '/', method='DELETE')
 print(f'Test Case 6 - Delete Blog (Authenticated): Status Code: {response.status_code}')
 
 # Test Case 7: Search Blog by Title (Unauthenticated)
@@ -72,3 +77,19 @@ print(f'Test Case 7 - Search Blog by Title (Unauthenticated): Status Code: {resp
 # Test Case 8: Search Blog by Author (Unauthenticated)
 response = perform_request(BLOGS_URL + '?author=1')
 print(f'Test Case 8 - Search Blog by Author (Unauthenticated): Status Code: {response.status_code}, Response: {response.json()}')
+
+# Test Case 9: Get Blogs by Date
+response = perform_request(BLOGS_BY_DATE_URL + '?date=2024-02-05')
+print(f'Test Case 9 - Get Blogs by Date: Status Code: {response.status_code}, Response: {response.json()}')
+
+# Test Case 10: Get Blogs by Date Range
+response = perform_request(BLOGS_BY_DATE_RANGE_URL + '?start_date=2024-02-01&end_date=2024-02-05')
+print(f'Test Case 10 - Get Blogs by Date Range: Status Code: {response.status_code}, Response: {response.json()}')
+
+# Test Case 11: Get Blogs Created After Date
+response = perform_request(BLOGS_CREATED_AFTER_DATE_URL + '?date=2024-02-01')
+print(f'Test Case 11 - Get Blogs Created After Date: Status Code: {response.status_code}, Response: {response.json()}')
+
+# Test Case 12: Get Blogs Created Before Date
+response = perform_request(BLOGS_CREATED_BEFORE_DATE_URL + '?date=2024-02-06')
+print(f'Test Case 12 - Get Blogs Created Before Date: Status Code: {response.status_code}, Response: {response.json()}')
