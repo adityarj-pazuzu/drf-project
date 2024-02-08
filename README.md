@@ -1,4 +1,15 @@
 Simple Django REST Framework project for Blog application
+It covers CRUD operations, ORM, ViewSets, Router, Models, Migrations, SQL database, JWT authentication. There's no front end only API implementation.
+Database model: title, content, created_at, modified_at, author
+
+API can do the following things:
+ - Get a list of all blogs
+ - Get blog by id, 
+ - Create, update, and delete blog
+ - Get the blog by date, created_before date, created_after date, by author, within the date range
+
+This project serves the purpose of learning basic DRF principles and implementation
+
 
 ## Getting Started
 
