@@ -1,5 +1,6 @@
 Simple Django REST Framework project for Blog application
-It covers CRUD operations, ORM, ViewSets, Router, Models, Migrations, SQL database, JWT authentication. There's no front end only API implementation.
+It covers CRUD operations, ORM, ViewSets, Router, Models, Migrations, SQL database, JWT authentication, unittests. There's also a script provided to test endpoints using Python requests module. There's no front end, it's pure REST API. The database used is Postgres, and credentials are hardcoded in code. Code has been developed and tested on Windows, the database has been tested as standalone application as well as a docker container.
+
 Database model: title, content, created_at, modified_at, author
 
 API can do the following things:
@@ -9,7 +10,6 @@ API can do the following things:
  - Get the blog by date, created_before date, created_after date, by author, within the date range
 
 This project serves the purpose of learning basic DRF principles and implementation
-
 
 ## Getting Started
 
@@ -89,9 +89,7 @@ The API uses JSON Web Tokens (JWT) for authentication. Include the JWT token in 
 - **Method:** `POST`
 - **Description:** Obtain an access token by providing valid credentials.
     ```bash
-    curl -X POST -H "Content-Type: application/json" \
-    -d '{"username": "your_username", "password": "your_password"}' \
-    http://localhost:8000/token/
+    curl -X POST -H "Content-Type: application/json" -d '{"username": "your_username", "password": "your_password"}' http://localhost:8000/token/
     ```
 
 ### Get a List of Blogs
