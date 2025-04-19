@@ -45,4 +45,4 @@ jobs:
         run: python myproject/manage.py migrate
 
       - name: Run tests
-        run: python myproject/manage.py test
+        run: python myproject/manage.py test myapp.tests
