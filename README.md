@@ -5,7 +5,7 @@ Database model: title, content, created_at, modified_at, author
 
 API can do the following things:
  - Get a list of all blogs
- - Get blog by id, 
+ - Get blog by id,
  - Create, update, and delete blog
  - Get the blog by date, created_before date, created_after date, by author, within the date range
 
@@ -13,7 +13,7 @@ This project serves the purpose of learning basic DRF principles and implementat
 
 ## Getting Started
 
-### Setting up PostgreSQL with Docker OR Install Postgres 
+### Setting up PostgreSQL with Docker OR Install Postgres
 
 1. Make sure you have Docker installed on your machine.
 

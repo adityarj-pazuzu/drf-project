@@ -1,8 +1,13 @@
-# models.py
+"""Define the schema"""
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Blog(models.Model):
+    """
+    Define the schema
+    """
+
     title = models.CharField(max_length=255)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
