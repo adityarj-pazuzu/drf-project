@@ -75,7 +75,7 @@ This project serves the purpose of learning basic DRF principles and implementat
 
 11. Test APIs using requests
     ```cmd
-    python api-requests-script.py
+    python api_requests_script.py
     ```
 
 

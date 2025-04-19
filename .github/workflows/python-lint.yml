@@ -1,4 +1,4 @@
-name: Flask application
+name: DRF application
 on: [push, pull_request]
 
 jobs:
